@@ -4,6 +4,8 @@ import com.browserstack.Pages.MainPage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.Description;
+import io.qameta.allure.Owner;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.openqa.selenium.By;
 
@@ -21,6 +23,8 @@ public class cloudcampaignPagesTest extends BrowserStackTest {
 		SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 	}
 	@Test
+	@Owner("Taras Zelenskyi")
+	@Description("Поиск Логотипа на главной странице с ЗАВЕДОМО ложным (неполным) Xpath. Тест неминуемо упадёт.")
 	public void LogoIsDisplayedOnMainPage() throws Exception {
 
 		open("/");
@@ -30,22 +34,11 @@ public class cloudcampaignPagesTest extends BrowserStackTest {
 		$(By.xpath("/html/body/div[1]/div[2]/div[2]/div[1]/a/img")).shouldNotBe(Condition.hidden);
 		sleep(2000);
 
-		/*// waiting for cart to load
-		while(!$(".float-cart__content").isDisplayed()) {
-			sleep(1000);
-		}
-
-		String productInCart = $(
-			By.xpath(
-				"//*[@id=\"__next\"]/div/div/div[2]/div[2]/div[2]/div/div[3]/p[1]"
-			)
-		).text();
-
-		// assert the product clicked has been added to cart
-		Assert.assertEquals(selectedProduct, productInCart);*/
 	}
 
 	@Test
+	@Owner("Taras Zelenskyi")
+	@Description("Выполняется проверка текста ошибки при попытке использования существующих данных для SignUp")
 	public void SignUpErrorTextTest() throws Exception {
 
 		open("/", MainPage.class)
