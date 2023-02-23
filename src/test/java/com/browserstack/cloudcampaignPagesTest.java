@@ -26,18 +26,28 @@ public class cloudcampaignPagesTest extends BrowserStackTest {
 		SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 	}
 
-	@Test(description="Ищем логотип на главной странице (с убитым в хлам Xpath)")
+	@Test(description="Этот тест (для примера) пропускаем", enabled = false)
+	@Owner("Taras Zelenskyi")
+	@Description("Поиск Логотипа на главной странице с ЗАВЕДОМО ложным (неполным) Xpath. Тест неминуемо упадёт.")
+	public void FakeTest() throws Exception {
+
+		open("/");
+		//sleep(2000);
+		String selectedProduct = $(By.xpath("//*[@id=\"1\"]/p")).text();
+		$(By.xpath("/html/body/div[1]/div[2]/div[2]/div[1]/a/img")).shouldNotBe(Condition.hidden);
+		//sleep(2000);
+	}
+
+	@Test(description="Ищем логотип на главной странице (с убитым в хлам Xpath)", enabled = true)
 	@Owner("Taras Zelenskyi")
 	@Description("Поиск Логотипа на главной странице с ЗАВЕДОМО ложным (неполным) Xpath. Тест неминуемо упадёт.")
 	public void LogoIsDisplayedOnMainPage() throws Exception {
 
 		open("/");
-		sleep(2000);
-
+		//sleep(2000);
 		String selectedProduct = $(By.xpath("//*[@id=\"1\"]/p")).text();
 		$(By.xpath("/html/body/div[1]/div[2]/div[2]/div[1]/a/img")).shouldNotBe(Condition.hidden);
-		sleep(2000);
-
+		//sleep(2000);
 	}
 
 	@Test(description = "Чекаем текст ошибки при сайнапе")
