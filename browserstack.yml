@@ -3,8 +3,8 @@
 # =============================
 # Add your BrowserStack userName and accessKey here or set BROWSERSTACK_USERNAME and
 # BROWSERSTACK_ACCESS_KEY as env variables
-userName: youtube_kYARzt
-accessKey: VrjhGRvVjGhexCKr2RJB
+userName: viktorzelensky_zTKo4V
+accessKey: EhLzwRU5zHbj4HM3P9gT
 framework: selenide-testng
 
 
