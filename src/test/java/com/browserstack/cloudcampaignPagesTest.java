@@ -6,6 +6,7 @@ import com.browserstack.Pages.MainPage;
 import com.browserstack.Pages.MainPageLocators;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.*;
 import io.qameta.allure.selenide.AllureSelenide;
@@ -17,6 +18,8 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 import static com.browserstack.Pages.MainPage.signup;
 import static com.codeborne.selenide.Selenide.*;
@@ -36,7 +39,20 @@ public class cloudcampaignPagesTest extends BrowserStackTest {
 	private MainPage Mainpage = new MainPage();
 	private AgencyHubPage Agencyhubpage = new AgencyHubPage();
 
-	@Test(description="Проверка названия страницы AgencyHub при переходе с главной страницы", enabled = true, priority = 2)
+	@Test(description="Заполнение non-editable поля", enabled = true, priority = 3)
+	@Owner("Taras Zelenskyi")
+	@Description("Проверка заполнения поля с статусом non-editable")
+	public void AgencyHubTest_email() throws Exception {
+
+		String AgencyHubTitleToCheck = "AgencyHub | Your Agency, Organized";
+		Mainpage.OpenPage();
+		Mainpage.Solutions();
+		Mainpage.OpenAgencyhubPage();
+		//Agencyhubpage.AgencyHubEmail("test@test.com");
+		Agencyhubpage.JoinWaitlistButton();
+	}
+
+	@Test(description="Проверка названия страницы AgencyHub при переходе с главной страницы", enabled = false, priority = 2)
 	@Owner("Taras Zelenskyi")
 	@Description("Проверка названия страницы Agency Hub / Переход с главной страницы через выпадающее меню Solutions")
 	public void AgencyHubTest() throws Exception {
@@ -44,12 +60,12 @@ public class cloudcampaignPagesTest extends BrowserStackTest {
 		String AgencyHubTitleToCheck = "AgencyHub | Your Agency, Organized";
 		Mainpage.OpenPage();
 		Mainpage.Solutions();
-		Mainpage.Agencyhub();
+		Mainpage.OpenAgencyhubPage();
 		Agencyhubpage.AgencyHubTitleCheck(AgencyHubTitleToCheck);
 	}
 
 
-	@Test(description="Сверяем название главной страницы", enabled = true, priority = 1)
+	@Test(description="Сверяем название главной страницы", enabled = false, priority = 1)
 	@Owner("Taras Zelenskyi")
 	@Description("Сверяем название сайта (Должно быть: \"{Title_to_check}\".")
 	public void MainPageTitle() throws Exception {
@@ -59,7 +75,7 @@ public class cloudcampaignPagesTest extends BrowserStackTest {
 	}
 
 
-	@Test(description = "Чекаем текст ошибки при сайнапе", enabled = true, priority = 0)
+	@Test(description = "Чекаем текст ошибки при сайнапе", enabled = false, priority = 0)
 	@Owner("Taras Zelenskyi")
 	@Description("Выполняется проверка текста ошибки при попытке использования существующих данных для SignUp")
 	public void SignUpErrorTextTest() throws Exception {

@@ -1,8 +1,11 @@
 package com.browserstack.Pages;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+
+import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -40,6 +43,22 @@ public class AgencyHubPage {
     @Step("Сверяем тайтл страницы AgencyHub")
     public AgencyHubPage AgencyHubTitleCheck(String AgencyHubTitleToCheck){
         AgencyHub.AgencyHubPageTitle.shouldHave(Condition.ownText(AgencyHubTitleToCheck));
+        return this;
+    }
+
+    @Step("Вводим email")
+    public AgencyHubPage AgencyHubEmail(String email){
+        List<SelenideElement> list = $$x("//iframe[contains(@title, 'Form')]");
+        switchTo().frame(list.get(0));
+        $x("//input[@type='email']").setValue(email);
+        return this;
+    }
+
+    @Step("Жмём кнопку 'Join Waitlist")
+    public AgencyHubPage JoinWaitlistButton(){
+        List<SelenideElement> list = $$x("//iframe[contains(@title, 'Form')]");
+        switchTo().frame(list.get(0));
+        $x("//input[@type='submit']").click();
         return this;
     }
 }

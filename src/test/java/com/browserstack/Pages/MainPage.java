@@ -37,7 +37,7 @@ public class MainPage {
     }
 
     @Step("Кликаем по 'Agency Hub' в 'Solutions'")
-    public AgencyHubPage Agencyhub(){
+    public AgencyHubPage OpenAgencyhubPage(){
         MainPage.AgencyHub.hover().click();
         return page(AgencyHubPage.class);
     }
