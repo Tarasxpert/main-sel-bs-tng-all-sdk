@@ -1,9 +1,6 @@
 package com.browserstack;
 
-import com.browserstack.Pages.AgencyHubLocators;
-import com.browserstack.Pages.AgencyHubPage;
-import com.browserstack.Pages.MainPage;
-import com.browserstack.Pages.MainPageLocators;
+import com.browserstack.pages.*;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
@@ -21,7 +18,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static com.browserstack.Pages.MainPage.signup;
+import static com.browserstack.pages.MainPage.signup;
 import static com.codeborne.selenide.Selenide.*;
 
 public class cloudcampaignPagesTest extends BrowserStackTest {
@@ -30,6 +27,7 @@ public class cloudcampaignPagesTest extends BrowserStackTest {
 	public void SetUp() {
 		driver.manage().window().maximize();
 		Configuration.baseUrl = "https://www.cloudcampaign.com/";
+		//Configuration.baseUrl = "https://app.qa.cloudcampaign.com";
 		Configuration.reportsFolder = "${project.build.directory}/allure-results";
 		SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 	}
@@ -38,6 +36,21 @@ public class cloudcampaignPagesTest extends BrowserStackTest {
 	private AgencyHubLocators AgencyHub = new AgencyHubLocators();
 	private MainPage Mainpage = new MainPage();
 	private AgencyHubPage Agencyhubpage = new AgencyHubPage();
+
+	@Test(description= "Login test in https://app.qa.cloudcampaign.com/login", enabled = false)
+	@Owner("Taras Zelenskyi")
+	@Description("No")
+	public void loginTest() throws Exception {
+		String EMAIL = "tzelenskyi@cloudcampaign.com";
+		String PASSWORD = "19E*r3cq";
+		open("/");
+		CloudcampaignCRMLoginPage cloudcampaignCRMLoginPage = new CloudcampaignCRMLoginPage();
+		cloudcampaignCRMLoginPage.inputEmail(EMAIL);
+		cloudcampaignCRMLoginPage.inputPassword(PASSWORD);
+		cloudcampaignCRMLoginPage.clickLoginButtton();
+		CloudcampaignCRMDashboardPage cloudcampaignCRMDashboardPage = new CloudcampaignCRMDashboardPage();
+		Assert.assertTrue(cloudcampaignCRMDashboardPage.isDisplayedDashboardButton());
+	}
 
 	@Test(description="Заполнение non-editable поля", enabled = true, priority = 3)
 	@Owner("Taras Zelenskyi")

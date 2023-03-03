@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="ThisIsCCSuite">
-	<test name="ThisIsCloudCampaignTest">
+<suite name="ThisIsCCSuite1">
+	<test name="ThisIsUiTest1">
 		<classes>
-			<class name="com.browserstack.cloudcampaignPagesTest"/>
+			<class name="com.browserstack.CloudcampaignUiTests"/>
 		</classes>
 	</test>
 </suite>
