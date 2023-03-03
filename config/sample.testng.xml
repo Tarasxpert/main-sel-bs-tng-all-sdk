@@ -3,7 +3,7 @@
 <suite name="ThisIsCCSuite1">
 	<test name="ThisIsUiTest1">
 		<classes>
-			<class name="com.browserstack.CloudcampaignUiTests"/>
+			<class name="com.browserstack.ui.tests.CloudcampaignUiTests"/>
 		</classes>
 	</test>
 </suite>

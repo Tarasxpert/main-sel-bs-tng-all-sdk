@@ -1,4 +1,4 @@
-package com.browserstack;
+package com.browserstack.ui.base;
 
 import java.io.File;
 import java.io.InputStream;
@@ -17,18 +17,22 @@ import org.testng.annotations.AfterMethod;
 import com.codeborne.selenide.WebDriverRunner;
 import org.yaml.snakeyaml.Yaml;
 
+import static java.lang.String.format;
 
-public class BrowserStackTest {
+
+public class BrowserStackDriver {
     public RemoteWebDriver driver;
     public static String userName, accessKey;
     public static Map<String, Object> browserStackYamlMap;
     public static final String USER_DIR = "user.dir";
 
-    public BrowserStackTest() {
+    public BrowserStackDriver() {
         File file = new File(getUserDir() + "/browserstack.yml");
         this.browserStackYamlMap = convertYamlFileToMap(file, new HashMap<>());
-        userName = System.getenv("BROWSERSTACK_USERNAME") != null ? System.getenv("BROWSERSTACK_USERNAME") : (String) browserStackYamlMap.get("userName");
-        accessKey = System.getenv("BROWSERSTACK_ACCESS_KEY") != null ? System.getenv("BROWSERSTACK_ACCESS_KEY") : (String) browserStackYamlMap.get("accessKey");
+        userName = System.getenv("BROWSERSTACK_USERNAME") != null ?
+                System.getenv("BROWSERSTACK_USERNAME") : (String) browserStackYamlMap.get("userName");
+        accessKey = System.getenv("BROWSERSTACK_ACCESS_KEY") != null ?
+                System.getenv("BROWSERSTACK_ACCESS_KEY") : (String) browserStackYamlMap.get("accessKey");
     }
 
     @BeforeMethod(alwaysRun = true)
@@ -37,7 +41,8 @@ public class BrowserStackTest {
         HashMap<String, String> bstackOptions = new HashMap<>();
         bstackOptions.put("source", "selenide:sample-sdk:v1.0");
         capabilities.setCapability("bstack:options", bstackOptions);
-        driver = new RemoteWebDriver(new URL(String.format("https://%s:%s@hub-cloud.browserstack.com/wd/hub", userName, accessKey)), capabilities);
+        driver = new RemoteWebDriver(
+                new URL(format("https://%s:%s@hub-cloud.browserstack.com/wd/hub", userName, accessKey)), capabilities);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         WebDriverRunner.setWebDriver(driver);
     }
@@ -58,7 +63,7 @@ public class BrowserStackTest {
             Map<String, Object> config = yaml.load(inputStream);
             map.putAll(config);
         } catch (Exception e) {
-            throw new RuntimeException(String.format("Malformed browserstack.yml file - %s.", e));
+            throw new RuntimeException(format("Malformed browserstack.yml file - %s.", e));
         }
         return map;
     }
