@@ -10,7 +10,6 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.logevents.SelenideLogger.addListener;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
