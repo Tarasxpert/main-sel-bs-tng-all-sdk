@@ -140,7 +140,7 @@
 			</build>
 		</profile>
         <profile>
-            <id>API test example</id>
+            <id>APItestexample</id>
             <build>
                 <plugins>
                     <plugin>
