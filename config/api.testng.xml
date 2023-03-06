@@ -3,7 +3,7 @@
 <suite name="API-suite">
     <test name="API test">
         <classes>
-            <class name="com.browserstack.api.tests.reqres.CheckAvatarAndIdTest"/>
+            <class name="com.browserstack.api.tests.reqres.APIsimpleTest"/>
         </classes>
     </test>
 </suite>

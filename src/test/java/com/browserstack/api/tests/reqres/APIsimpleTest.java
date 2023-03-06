@@ -14,7 +14,7 @@ import static com.browserstack.api.base.Specifications.responseSuccessfulSpecifi
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertTrue;
 
-public class CheckAvatarAndIdTest {
+public class APIsimpleTest {
     private final static String URL = "https://reqres.in/";
 
     @Test(description = "Checking user emails endings ('@reqres.in' -> expected '@reqres.in')", priority = 1)
