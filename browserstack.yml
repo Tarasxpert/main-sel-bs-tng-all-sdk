@@ -18,10 +18,10 @@ framework: selenide-testng
 # Ensure you add a dynamic identifier, like an incremental build number from your
 # CI/CD or timestamp at the end of every build; otherwise tests from different
 # executions will be grouped together on BrowserStack
-buildName: Here-is-my-build
+buildName: Presentation-build
 buildIdentifier: ${DATE_TIME}
 # Use `projectName` to set the name of your project. Example, Marketing Website
-projectName: My Personal Sample
+projectName: cludcampaign
 
 # =======================================
 # Platforms (Browsers / Devices to test)
