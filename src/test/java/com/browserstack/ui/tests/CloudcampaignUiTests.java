@@ -27,12 +27,12 @@ public class CloudcampaignUiTests extends BrowserStackDriver {
         addListener("AllureSelenide", new AllureSelenide());
     }
 
-    @Test(description= "Login test in https://app.qa.cloudcampaign.com/login")
+    @Test(description= "Login test in https://app.qa.cloudcampaign.com", priority = 1)
     @Owner("Taras Zelenskyi")
-    @Description("No")
+    @Description("Logging in to CRM using existing credentials and checking if dashboard is displayed and visible.")
     public void loginTest() {
-        open("/");
         CloudcampaignCRMLoginPage cloudcampaignCRMLoginPage = new CloudcampaignCRMLoginPage();
+        cloudcampaignCRMLoginPage.openPage();
         cloudcampaignCRMLoginPage.inputEmail(EMAIL);
         cloudcampaignCRMLoginPage.inputPassword(PASSWORD);
         cloudcampaignCRMLoginPage.clickLoginButtton();
@@ -40,21 +40,22 @@ public class CloudcampaignUiTests extends BrowserStackDriver {
         assertTrue(cloudcampaignCRMDashboardPage.isDisplayedDashboardButton());
     }
 
-    @Test(description= "Login test in https://app.qa.cloudcampaign.com/login")
+    @Test(description= "Login test in https://app.qa.cloudcampaign.com", priority = 0)
     @Owner("Taras Zelenskyi")
-    @Description("не валидный")
+    @Description("Trying to log in to CRM using existing credentials," +
+            "but trying to input an email to an unexisting field ('emailtest'). This will lead us to TestFail")
     public void incorrectLoginTest() {
-        open("/");
         CloudcampaignCRMLoginPage cloudcampaignCRMLoginPage = new CloudcampaignCRMLoginPage();
+        cloudcampaignCRMLoginPage.openPage();
         cloudcampaignCRMLoginPage.inputIncorrectEmailField(EMAIL);
     }
 
-    @Test(description = "d", enabled = true)
-    @Owner("")
-    @Description("d")
+    @Test(description = "Checking if our account role is admin", priority = 1)
+    @Owner("Taras Zelenskyi")
+    @Description("Logging in to CRM using existing credentials and checking if our account role is admin")
     public void checkAdminUserRoleTest() {
-        open("/");
         CloudcampaignCRMLoginPage cloudcampaignCRMLoginPage = new CloudcampaignCRMLoginPage();
+        cloudcampaignCRMLoginPage.openPage();
         cloudcampaignCRMLoginPage.inputEmail(EMAIL);
         cloudcampaignCRMLoginPage.inputPassword(PASSWORD);
         cloudcampaignCRMLoginPage.clickLoginButtton();

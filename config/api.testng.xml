@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="API-suite">
-    <test name="Test Of API">
+    <test name="API test">
         <classes>
-
+            <class name="com.browserstack.api.tests.reqres.CheckAvatarAndIdTest"/>
         </classes>
     </test>
 </suite>
